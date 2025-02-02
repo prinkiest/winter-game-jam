@@ -21,11 +21,16 @@ public class InputHandler : MonoBehaviour
 
     public Vector2 moveInput { get; private set; }
     public Vector2 lookInput { get; private set; }
+    public bool isShooting { get; private set; }
     private void Update()
     {
         #region Movement
         moveInput = playerActions.Move.ReadValue<Vector2>();
         lookInput = playerActions.Look.ReadValue<Vector2>();
+
+        #endregion
+        #region Shooting
+        isShooting = playerActions.Attack.IsPressed();
 
         #endregion
     }
@@ -36,6 +41,7 @@ public class InputHandler : MonoBehaviour
 
         playerActions.Jump.performed += ctx => OnJump();
         playerActions.WorldInteract.performed += ctx => OnInteract();
+        //playerActions.Attack.performed += ctx => OnShoot();
 
         // UI
 
@@ -49,6 +55,7 @@ public class InputHandler : MonoBehaviour
 
         playerActions.Jump.performed -= ctx => OnJump();
         playerActions.WorldInteract.performed -= ctx => OnInteract();
+        //playerActions.Attack.performed -= ctx => OnShoot();
 
         // UI
 
@@ -77,4 +84,16 @@ public class InputHandler : MonoBehaviour
     }
 
     #endregion
+
+    /*#region Shoot Actions
+
+    public Action shootAction;
+
+    public void OnShoot()
+    {
+        Debug.Log("Invoking shooting");
+        shootAction.Invoke();
+    }
+
+    #endregion*/
 }

@@ -1,24 +1,26 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] float _lifetime = 5f, speed = 1f, boomRadius = 2.5f;
+    [SerializeField] float _lifetime = 5f, startLifetime = 5f, speed = 1f, boomRadius = 2.5f;
     public float lifetime
     {
         get { return _lifetime; }
-        set
+        private set
         {
             if (value <= 0f)
-                Explode();
+                Die();
             _lifetime = value;
         }
     }
     [SerializeField] LayerMask boomMask;
+    public IObjectPool<Bullet> pool;
 
-    void Start()
+    /*void Start()
     {
-        
-    }
+        startLifetime = lifetime;
+    }*/
 
     void Update()
     {
@@ -29,9 +31,14 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.fixedDeltaTime);
     }
 
-    void Explode()
+    public void ResetBullet()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, boomRadius, boomMask);
+        lifetime = startLifetime;
+    }
+
+    void Die()
+    {
+        /*Collider[] colliders = Physics.OverlapSphere(transform.position, boomRadius, boomMask);
 
         foreach (Collider c in colliders)
         {
@@ -39,8 +46,8 @@ public class Bullet : MonoBehaviour
             {
 
             }
-        }
+        }*/
 
-        Destroy(gameObject);
+        pool.Release(this);
     }
 }
