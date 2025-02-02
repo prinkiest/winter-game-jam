@@ -35,7 +35,7 @@ public class InputHandler : MonoBehaviour
         playerActions.Enable();
 
         playerActions.Jump.performed += ctx => OnJump();
-        playerActions.Jump.performed += ctx => OnInteract();
+        playerActions.WorldInteract.performed += ctx => OnInteract();
 
         // UI
 
@@ -48,7 +48,7 @@ public class InputHandler : MonoBehaviour
         playerActions.Disable();
 
         playerActions.Jump.performed -= ctx => OnJump();
-        playerActions.Jump.performed -= ctx => OnInteract();
+        playerActions.WorldInteract.performed -= ctx => OnInteract();
 
         // UI
 
