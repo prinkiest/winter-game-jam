@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
@@ -12,8 +13,10 @@ public class HealthComponent : MonoBehaviour
         health -= damage;
     }
 
+    public Action onDeath;
     public void Die()
     {
         Debug.Log($"{gameObject} died. Max health: {maxHealth}.");
+        onDeath.Invoke();
     }
 }
