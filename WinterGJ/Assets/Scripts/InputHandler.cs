@@ -35,7 +35,7 @@ public class InputHandler : MonoBehaviour
         playerActions.Enable();
 
         playerActions.Jump.performed += ctx => OnJump();
-        playerActions.Interact.performed += ctx => OnInteract();
+        playerActions.Jump.performed += ctx => OnInteract();
 
         // UI
 
@@ -48,7 +48,7 @@ public class InputHandler : MonoBehaviour
         playerActions.Disable();
 
         playerActions.Jump.performed -= ctx => OnJump();
-        playerActions.Interact.performed -= ctx => OnInteract();
+        playerActions.Jump.performed -= ctx => OnInteract();
 
         // UI
 
@@ -61,6 +61,7 @@ public class InputHandler : MonoBehaviour
 
     public void OnJump()
     {
+        Debug.Log("Jump");
         jumpAction.Invoke();
     }
     #endregion
@@ -71,6 +72,7 @@ public class InputHandler : MonoBehaviour
 
     public void OnInteract()
     {
+        Debug.Log("Invoking interact");
         interactAction.Invoke();
     }
 
