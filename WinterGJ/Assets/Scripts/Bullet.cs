@@ -3,18 +3,18 @@ using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] float _lifetime = 5f, startLifetime = 5f, speed = 1f, boomRadius = 2.5f;
+    [SerializeField] protected float _lifetime = 5f, startLifetime = 5f, speed = 1f, boomRadius = 2.5f, boomForce = 25f;
     public float lifetime
     {
         get { return _lifetime; }
-        private set
+        protected set
         {
             if (value <= 0f)
                 Die();
             _lifetime = value;
         }
     }
-    [SerializeField] LayerMask boomMask;
+    [SerializeField] protected LayerMask boomMask;
     public IObjectPool<Bullet> pool;
 
     /*void Start()
@@ -36,18 +36,8 @@ public class Bullet : MonoBehaviour
         lifetime = startLifetime;
     }
 
-    void Die()
+    protected virtual void Die()
     {
-        /*Collider[] colliders = Physics.OverlapSphere(transform.position, boomRadius, boomMask);
-
-        foreach (Collider c in colliders)
-        {
-            if (TryGetComponent(out CharacterController controller))
-            {
-
-            }
-        }*/
-
         pool.Release(this);
     }
 }

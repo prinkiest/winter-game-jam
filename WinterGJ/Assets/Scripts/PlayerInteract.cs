@@ -18,7 +18,7 @@ public class PlayerInteract : MonoBehaviour
         // UI = GetComponent<UIController>();
 
         inputHandler.interactAction += TryInteract;
-        cam = GetComponent<PlayerController>().cam;
+        cam = Camera.main; //GetComponent<PlayerController>().cam;
     }
     private void Update()
     {

@@ -473,7 +473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 0.25
-  bulletPrefab: {fileID: 4035586500812487095, guid: 96afda53a9836f341939bea005c042e3, type: 3}
+  bulletPrefab: {fileID: -8078361693577396395, guid: 96afda53a9836f341939bea005c042e3, type: 3}
   shootPoint: {fileID: 8843507801326061698}
 --- !u!1 &6606500922580339678
 GameObject:
